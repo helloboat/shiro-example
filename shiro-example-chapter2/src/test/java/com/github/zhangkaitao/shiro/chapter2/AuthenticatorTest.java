@@ -40,6 +40,10 @@ public class AuthenticatorTest {
         login("classpath:shiro-authenticator-all-fail.ini");
     }
 
+    /**
+     * 至少一个验证成功
+     * 返回所有Realm身份 验证----成功---- 的认证信息
+     */
     @Test
     public void testAtLeastOneSuccessfulStrategyWithSuccess() {
         login("classpath:shiro-authenticator-atLeastOne-success.ini");
@@ -47,9 +51,14 @@ public class AuthenticatorTest {
 
         //得到一个身份集合，其包含了Realm验证成功的身份信息
         PrincipalCollection principalCollection = subject.getPrincipals();
+        System.out.println("AtLeastOneSuccessful###################"+principalCollection.asList().size());
         Assert.assertEquals(2, principalCollection.asList().size());
     }
 
+    /**
+     * 只要有一个Realm验证成功即可
+     * 只返回第一个Realm身份验证成功的认证信息
+     */
     @Test
     public void testFirstOneSuccessfulStrategyWithSuccess() {
         login("classpath:shiro-authenticator-first-success.ini");
@@ -92,8 +101,8 @@ public class AuthenticatorTest {
         //3、得到Subject及创建用户名/密码身份验证Token（即用户身份/凭证）
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken("zhang", "123");
-
         subject.login(token);
+        System.out.println("是否登录成功："+subject.isAuthenticated());
     }
 
     @After
