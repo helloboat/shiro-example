@@ -10,7 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>shiro-example-chapter2</module>
-        <module>shiro-example-chapter3</module>
+        <!--<module>shiro-example-chapter3</module>
         <module>shiro-example-chapter4</module>
         <module>shiro-example-chapter5</module>
         <module>shiro-example-chapter6</module>
@@ -39,8 +39,21 @@
         <module>shiro-example-chapter23-app1</module>
         <module>shiro-example-chapter23-app2</module>
         <module>shiro-example-chapter23-nginx</module>
-        <module>shiro-example-chapter24</module>
+        <module>shiro-example-chapter24</module>-->
     </modules>
 
-
+    <repositories>
+        <repository>
+            <id>maven-ali</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public//</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>fail</checksumPolicy>
+            </snapshots>
+        </repository>
+    </repositories>
 </project>
