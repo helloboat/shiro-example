@@ -3,6 +3,7 @@ package com.github.zhangkaitao.shiro.chapter3;
 import junit.framework.Assert;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.apache.shiro.authz.permission.WildcardPermission;
+import org.apache.shiro.mgt.AuthorizingSecurityManager;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -36,7 +37,7 @@ public class PermissionTest extends BaseTest {
         subject().checkPermissions("user:view");
     }
 
-
+    AuthorizingSecurityManager n;
     @Test
     public void testWildcardPermission1() {
         login("classpath:shiro-permission.ini", "li", "123");

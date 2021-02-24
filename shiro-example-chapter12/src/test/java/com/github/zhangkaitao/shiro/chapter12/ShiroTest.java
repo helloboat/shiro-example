@@ -121,10 +121,5 @@ public class ShiroTest {
 
         token = new UsernamePasswordToken(u1.getUsername(), password + "1");
         subject.login(token);
-
-
-
-
     }
-
 }

@@ -18,6 +18,7 @@ public class RoleTest extends BaseTest {
         login("classpath:shiro-role.ini", "zhang", "123");
         //判断拥有角色：role1
         Assert.assertTrue(subject().hasRole("role1"));
+        System.out.println("######"+subject().isAuthenticated()+";#########"+subject().getPrincipal());
         //判断拥有角色：role1 and role2
         Assert.assertTrue(subject().hasAllRoles(Arrays.asList("role1", "role2")));
         //判断拥有角色：role1 and role2 and !role3
