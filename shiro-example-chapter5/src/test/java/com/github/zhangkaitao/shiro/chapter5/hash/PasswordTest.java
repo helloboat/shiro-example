@@ -5,11 +5,14 @@ import org.apache.commons.beanutils.ConvertUtilsBean2;
 import org.apache.commons.beanutils.converters.AbstractConverter;
 import org.apache.shiro.authc.ExcessiveAttemptsException;
 import org.apache.shiro.codec.CodecSupport;
+import org.apache.shiro.codec.Hex;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.realm.jdbc.JdbcRealm;
 import org.apache.shiro.util.ByteSource;
 import org.junit.Test;
+import sun.security.provider.MD5;
 
 /**
  * <p>User: Zhang Kaitao
@@ -39,7 +42,6 @@ public class PasswordTest extends BaseTest {
 
         SimpleHash hash = new SimpleHash(algorithmName, password, salt1 + salt2, hashIterations);
         String encodedPassword = hash.toHex();
-        System.out.println(salt2);
         System.out.println(encodedPassword);
     }
 

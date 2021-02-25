@@ -58,7 +58,7 @@ public class CodecAndCryptoTest {
     public void testRandom() {
         //生成随机数
         SecureRandomNumberGenerator randomNumberGenerator = new SecureRandomNumberGenerator();
-        randomNumberGenerator.setSeed("123".getBytes());
+        //randomNumberGenerator.setSeed("123".getBytes());
         System.out.println(randomNumberGenerator.nextBytes().toHex());
     }
 
@@ -68,7 +68,7 @@ public class CodecAndCryptoTest {
     public void testMd5() {
         String str = "hello";
         String salt = "123";
-        String md5 = new Md5Hash(str, salt).toString();//还可以转换为 toBase64()/toHex()
+        String md5 = new Md5Hash(str, salt,2).toString();//还可以转换为 toBase64()/toHex()
         System.out.println(md5);
 
 
@@ -86,7 +86,7 @@ public class CodecAndCryptoTest {
     @Test
        public void testSha256() {
         String str = "hello";
-        String salt = "123";
+        String salt = "&UJM$%^&*(";
         String sha1 = new Sha256Hash(str, salt).toString();
         System.out.println(sha1);
 
@@ -139,6 +139,9 @@ public class CodecAndCryptoTest {
     }
 
 
+    /**
+     * AES对称加密算法
+     */
     @Test
     public void testAesCipherService() {
         AesCipherService aesCipherService = new AesCipherService();
@@ -146,14 +149,14 @@ public class CodecAndCryptoTest {
 
         //生成key
         Key key = aesCipherService.generateNewKey();
-
+        System.out.println("key:"+key.getFormat());
         String text = "hello";
 
         //加密
         String encrptText = aesCipherService.encrypt(text.getBytes(), key.getEncoded()).toHex();
         //解密
         String text2 = new String(aesCipherService.decrypt(Hex.decode(encrptText), key.getEncoded()).getBytes());
-
+        System.out.println(encrptText);
         Assert.assertEquals(text, text2);
     }
 

@@ -41,10 +41,10 @@ public class NonConfigurationCreateTest {
 
         //设置Realm
         DruidDataSource ds = new DruidDataSource();
-        ds.setDriverClassName("com.mysql.jdbc.Driver");
-        ds.setUrl("jdbc:mysql://localhost:3306/shiro");
+        ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        ds.setUrl("jdbc:mysql://localhost:3306/shiro?serverTimezone=GMT&useUnicode=true&characterEncoding=utf8&useSSL=false");
         ds.setUsername("root");
-        ds.setPassword("");
+        ds.setPassword("root");
 
         JdbcRealm jdbcRealm = new JdbcRealm();
         jdbcRealm.setDataSource(ds);
@@ -60,6 +60,7 @@ public class NonConfigurationCreateTest {
         subject.login(token);
 
         Assert.assertTrue(subject.isAuthenticated());
+        System.out.println(subject.getPrincipal());
 
 
 
