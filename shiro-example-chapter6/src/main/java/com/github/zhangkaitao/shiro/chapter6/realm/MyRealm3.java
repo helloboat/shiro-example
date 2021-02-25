@@ -23,7 +23,7 @@ public class MyRealm3 implements Realm {
 
     @Override
     public AuthenticationInfo getAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        User user = new User("zhang", "123");
+        User user = new User("wang", "123");
         return new SimpleAuthenticationInfo(
                 user, //身份 User类型
                 "123",   //凭据

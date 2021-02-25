@@ -8,6 +8,8 @@ import org.apache.shiro.subject.Subject;
 import org.junit.Test;
 
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -28,20 +30,28 @@ public class PrincialCollectionTest extends BaseTest {
         PrincipalCollection princialCollection = subject.getPrincipals();
         Object primaryPrincipal2 = princialCollection.getPrimaryPrincipal();
 
+        System.out.println("primaryPrincipal1="+primaryPrincipal1);
         //但是因为多个Realm都返回了Principal，所以此处到底是哪个是不确定的
         Assert.assertEquals(primaryPrincipal1, primaryPrincipal2);
 
 
         //返回 a b c
         Set<String> realmNames = princialCollection.getRealmNames();
-        System.out.println(realmNames);
+        System.out.println("realmNames="+realmNames);
 
-        //因为MyRealm1和MyRealm2返回的凭据都是zhang，所以排重了
+        //MyRealm1和MyRealm2返回的凭据都是zhang，所以排重了
         Set<Object> principals = princialCollection.asSet(); //asList和asSet的结果一样
-        System.out.println(principals);
+        System.out.println("set principals="+principals);
 
+        List<Object> principalslist = princialCollection.asList();
+        System.out.println("List principals="+principalslist);
+        Iterator<Object> iterator = princialCollection.iterator();
+        while(iterator.hasNext()){
+            Object o = iterator.next();
+            System.out.println("o="+o);
+        }
         //根据Realm名字获取
         Collection<User> users = princialCollection.fromRealm("c");
-        System.out.println(users);
+        System.out.println("users"+users);
     }
 }
