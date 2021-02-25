@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>登录</title>
-    <style>.error{color:red;}</style>
+    <style>.error{color: #ff0000;}</style>
 </head>
 <body>
 

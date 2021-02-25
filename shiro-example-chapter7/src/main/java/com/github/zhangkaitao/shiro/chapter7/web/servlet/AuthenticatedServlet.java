@@ -15,6 +15,10 @@ import java.io.IOException;
  * <p>Date: 14-1-29
  * <p>Version: 1.0
  */
+
+/**
+ * 验证是否拥有权限
+ */
 @WebServlet(name = "authenticatedServlet", urlPatterns = "/authenticated")
 public class AuthenticatedServlet extends HttpServlet {
 
@@ -22,6 +26,7 @@ public class AuthenticatedServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Subject subject = SecurityUtils.getSubject();
         if(subject.isAuthenticated()) {
+            req.setAttribute("subject",subject);
             req.getRequestDispatcher("/WEB-INF/jsp/authenticated.jsp").forward(req, resp);
         } else {
             req.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(req, resp);

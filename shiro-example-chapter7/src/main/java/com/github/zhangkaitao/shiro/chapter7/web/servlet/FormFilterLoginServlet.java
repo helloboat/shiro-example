@@ -20,6 +20,10 @@ import java.io.IOException;
  * <p>Date: 14-1-29
  * <p>Version: 1.0
  */
+
+/**
+ * 基于表单的拦截器身份验证
+ */
 @WebServlet(name = "formFilterLoginServlet", urlPatterns = "/formfilterlogin")
 public class FormFilterLoginServlet extends HttpServlet {
 

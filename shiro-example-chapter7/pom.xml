@@ -40,7 +40,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.25</version>
+            <version>8.0.22</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -60,6 +60,11 @@
 
     <build>
         <finalName>chapter7</finalName>
+        <!--
+        此处我们使用了jetty-maven-plugin和tomcat7-maven-plugin插件；
+        这样可以直接使用“mvn jetty:run”或“mvn tomcat7:run”直接运行webapp了。
+        然后通过URLhttp://localhost:8080/chapter7/访问即可。
+        -->
         <plugins>
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>

@@ -19,6 +19,10 @@ import java.io.IOException;
  * <p>Date: 14-1-29
  * <p>Version: 1.0
  */
+
+/**
+ * 登录servlet
+ */
 @WebServlet(name = "loginServlet", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
 
@@ -50,6 +54,7 @@ public class LoginServlet extends HttpServlet {
             req.setAttribute("error", error);
             req.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(req, resp);
         } else {//登录成功
+            req.setAttribute("subject",subject);
             req.getRequestDispatcher("/WEB-INF/jsp/loginSuccess.jsp").forward(req, resp);
         }
     }
