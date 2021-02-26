@@ -21,6 +21,9 @@ import java.util.concurrent.TimeUnit;
  * <p>User: Zhang Kaitao
  * <p>Date: 14-2-9
  * <p>Version: 1.0
+ * 会话验证调度器实现都是直接调用AbstractValidatingSessionManager 的validateSessions方法进行验证，
+ * 其直接调用SessionDAO的getActiveSessions方法获取所有会话进行验证，如果会话比较多，会影响性能；
+ * 可以考虑如分页获取会话并进行验证
  */
 public class MySessionValidationScheduler implements SessionValidationScheduler, Runnable {
 
@@ -78,6 +81,9 @@ public class MySessionValidationScheduler implements SessionValidationScheduler,
         }
     }
 
+    /**
+     * 执行session验证
+     */
     public void run() {
         if (log.isDebugEnabled()) {
             log.debug("Executing session validation...");

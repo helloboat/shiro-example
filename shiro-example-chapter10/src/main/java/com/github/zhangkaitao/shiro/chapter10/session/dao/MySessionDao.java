@@ -1,12 +1,13 @@
 package com.github.zhangkaitao.shiro.chapter10.session.dao;
-
 import com.github.zhangkaitao.shiro.chapter10.JdbcTemplateUtils;
 import com.github.zhangkaitao.shiro.chapter10.SerializableUtils;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.UnknownSessionException;
 import org.apache.shiro.session.mgt.ValidatingSession;
 import org.apache.shiro.session.mgt.eis.CachingSessionDAO;
 import org.apache.shiro.session.mgt.eis.SessionDAO;
+import org.apache.shiro.subject.Subject;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.io.Serializable;
@@ -17,8 +18,9 @@ import java.util.List;
  * <p>User: Zhang Kaitao
  * <p>Date: 14-2-8
  * <p>Version: 1.0
+ * 如果自定义实现SessionDAO，继承CachingSessionDAO即可
  */
-public class MySessionDAO extends CachingSessionDAO {
+public class MySessionDao extends CachingSessionDAO {
 
     private JdbcTemplate jdbcTemplate = JdbcTemplateUtils.jdbcTemplate();
 

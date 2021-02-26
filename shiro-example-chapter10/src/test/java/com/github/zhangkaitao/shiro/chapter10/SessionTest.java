@@ -3,7 +3,6 @@ package com.github.zhangkaitao.shiro.chapter10;
 import junit.framework.Assert;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
-import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.subject.Subject;
 import org.junit.Test;
 
@@ -11,6 +10,8 @@ import org.junit.Test;
  * <p>User: Zhang Kaitao
  * <p>Date: 14-2-7
  * <p>Version: 1.0
+ *
+ * session的一些常用操作
  */
 public class SessionTest extends BaseTest {
 
