@@ -15,6 +15,7 @@ import javax.servlet.Filter;
  * <p>User: Zhang Kaitao
  * <p>Date: 14-2-3
  * <p>Version: 1.0
+ * 自定义FilterChainResolver，可以通过实现WebEnvironment接口完成
  */
 public class MyIniWebEnvironment extends IniWebEnvironment {
     @Override

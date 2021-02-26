@@ -9,10 +9,12 @@ import javax.servlet.ServletResponse;
  * <p>User: Zhang Kaitao
  * <p>Date: 14-2-3
  * <p>Version: 1.0
+ * AdviceFilter提供了AOP的功能，其实现和SpringMVC中的Interceptor思想一样
  */
 public class MyAdviceFilter extends AdviceFilter {
     @Override
     protected boolean preHandle(ServletRequest request, ServletResponse response) throws Exception {
+        System.out.println(request.getParameterMap().values());
         System.out.println("====预处理/前置处理");
         return true;//返回false将中断后续拦截器链的执行
     }

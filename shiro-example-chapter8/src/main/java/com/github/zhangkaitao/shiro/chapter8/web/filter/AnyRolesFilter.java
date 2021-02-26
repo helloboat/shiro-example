@@ -3,6 +3,9 @@ package com.github.zhangkaitao.shiro.chapter8.web.filter;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.StringUtils;
 import org.apache.shiro.web.filter.AccessControlFilter;
+import org.apache.shiro.web.filter.mgt.DefaultFilter;
+import org.apache.shiro.web.filter.mgt.FilterChainResolver;
+import org.apache.shiro.web.servlet.ProxiedFilterChain;
 import org.apache.shiro.web.util.WebUtils;
 
 import javax.servlet.ServletRequest;
@@ -18,7 +21,9 @@ public class AnyRolesFilter extends AccessControlFilter {
 
     private String unauthorizedUrl = "/unauthorized.jsp";
     private String loginUrl = "/login.jsp";
-
+    ProxiedFilterChain p;
+    FilterChainResolver p1;
+    DefaultFilter d;
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
         String[] roles = (String[])mappedValue;
