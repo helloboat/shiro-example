@@ -29,6 +29,11 @@ public class UserRealmTest extends BaseTest {
         super.tearDown();
     }
 
+    /**
+     *
+     * 测试清除认证缓存信息
+     * u1：zhang，123
+     */
     @Test
       public void testClearCachedAuthenticationInfo() {
         login(u1.getUsername(), password);
@@ -43,6 +48,11 @@ public class UserRealmTest extends BaseTest {
 
     }
 
+    /**
+     *
+     * 测试清除授权缓存信息
+     * u1：zhang，123
+     */
     @Test
     public void testClearCachedAuthorizationInfo() {
         login(u1.getUsername(), password);
@@ -57,7 +67,11 @@ public class UserRealmTest extends BaseTest {
     }
 
 
-
+    /**
+     *
+     * 测试清除认证、授权缓存信息
+     * u1：zhang，123
+     */
     @Test
     public void testClearCache() {
         login(u1.getUsername(), password);

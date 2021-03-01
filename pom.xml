@@ -9,7 +9,7 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>shiro-example-chapter10</module>
+        <module>shiro-example-chapter11</module>
         <!--<module>shiro-example-chapter2</module>
         <module>shiro-example-chapter3</module>
         <module>shiro-example-chapter4</module>

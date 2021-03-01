@@ -6,6 +6,7 @@ import com.github.zhangkaitao.shiro.chapter11.service.UserServiceImpl;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
@@ -18,7 +19,7 @@ import org.apache.shiro.util.ByteSource;
 public class UserRealm extends AuthorizingRealm {
 
     private UserService userService = new UserServiceImpl();
-
+    DefaultSecurityManager m;
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         String username = (String)principals.getPrimaryPrincipal();

@@ -193,7 +193,7 @@ public class EhCacheManager implements CacheManager, Initializable, Destroyable 
      *
      * @throws org.apache.shiro.cache.CacheException
      *          if there are any CacheExceptions thrown by EhCache.
-     * @see net.sf.ehcache.CacheManager#create
+     * @see net.sf.ehcache.CacheManager create
      */
     public final void init() throws CacheException {
         ensureCacheManager();
