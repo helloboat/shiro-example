@@ -37,6 +37,7 @@
     <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
         <constructor-arg value="sid"/>
         <property name="httpOnly" value="true"/>
+        <!--sessionIdCookie：maxAge=-1表示浏览器关闭时失效此Cookie-->
         <property name="maxAge" value="-1"/>
     </bean>
 
@@ -48,7 +49,7 @@
 
     <!-- rememberMe管理器 -->
     <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
-        <!-- rememberMe cookie加密的密钥 建议每个项目都不一样 默认AES算法 密钥长度（128 256 512 位）-->
+        <!-- ciperkey是rememberMe cookie加密的密钥 建议每个项目都不一样 默认AES算法 密钥长度（128 256 512 位）-->
         <property name="cipherKey"
                   value="#{T(org.apache.shiro.codec.Base64).decode('4AvVhmFLUs0KTA3Kprsdag==')}"/>
         <property name="cookie" ref="rememberMeCookie"/>
@@ -91,7 +92,10 @@
         <property name="arguments" ref="securityManager"/>
     </bean>
 
-    <!-- 基于Form表单的身份验证过滤器 -->
+    <!--
+        基于Form表单的身份验证过滤器
+        rememberMeParam，即rememberMe请求参数名，请求参数是boolean类型，true表示rememberMe。
+     -->
     <bean id="formAuthenticationFilter" class="org.apache.shiro.web.filter.authc.FormAuthenticationFilter">
         <property name="usernameParam" value="username"/>
         <property name="passwordParam" value="password"/>
@@ -109,9 +113,11 @@
                 <entry key="authc" value-ref="formAuthenticationFilter"/>
             </util:map>
         </property>
+        <!--/** = user”表示访问该地址的用户是身份验证通过或RememberMe登录的都可以-->
         <property name="filterChainDefinitions">
             <value>
                 /login.jsp = authc
+                <!-- 请求 logout地址，shiro去清除session-->
                 /logout = logout
                 /authenticated.jsp = authc
                 /** = user
