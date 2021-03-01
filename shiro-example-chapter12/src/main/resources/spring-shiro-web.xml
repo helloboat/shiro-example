@@ -88,11 +88,13 @@
         <property name="securityManager" ref="securityManager"/>
         <property name="loginUrl" value="/login.jsp"/>
         <property name="unauthorizedUrl" value="/unauthorized.jsp"/>
+        <!--filters属性用于定义自己的过滤器，即ini配置中的[filters]部分-->
         <property name="filters">
             <util:map>
                 <entry key="authc" value-ref="formAuthenticationFilter"/>
             </util:map>
         </property>
+        <!--filterChainDefinitions用于声明url和filter的关系，即ini配置中的[urls]部分-->
         <property name="filterChainDefinitions">
             <value>
                 /index.jsp = anon

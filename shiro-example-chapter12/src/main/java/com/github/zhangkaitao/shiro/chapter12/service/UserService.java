@@ -1,8 +1,8 @@
 package com.github.zhangkaitao.shiro.chapter12.service;
 
-import com.github.zhangkaitao.shiro.chapter12.entity.User;
 
 import java.util.Set;
+import com.github.zhangkaitao.shiro.chapter12.entity.User;
 
 /**
  * <p>User: Zhang Kaitao
