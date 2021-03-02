@@ -30,6 +30,7 @@ import java.net.URISyntaxException;
  * <p>User: Zhang Kaitao
  * <p>Date: 14-2-16
  * <p>Version: 1.0
+ * 访问令牌控制器
  */
 @RestController
 public class AccessTokenController {
@@ -41,14 +42,12 @@ public class AccessTokenController {
     private UserService userService;
 
     @RequestMapping("/accessToken")
-    public HttpEntity token(HttpServletRequest request)
-            throws URISyntaxException, OAuthSystemException {
-
+    public HttpEntity token(HttpServletRequest request) throws URISyntaxException, OAuthSystemException {
         try {
             //构建OAuth请求
             OAuthTokenRequest oauthRequest = new OAuthTokenRequest(request);
 
-            //检查提交的客户端id是否正确
+            //检查提交的客户端id是否正确，是否为空
             if (!oAuthService.checkClientId(oauthRequest.getClientId())) {
                 OAuthResponse response =
                         OAuthASResponse.errorResponse(HttpServletResponse.SC_BAD_REQUEST)
@@ -58,7 +57,7 @@ public class AccessTokenController {
                 return new ResponseEntity(response.getBody(), HttpStatus.valueOf(response.getResponseStatus()));
             }
 
-            // 检查客户端安全KEY是否正确
+            // 检查客户端安全KEY是否正确，是否为空
             if (!oAuthService.checkClientSecret(oauthRequest.getClientSecret())) {
                 OAuthResponse response =
                         OAuthASResponse.errorResponse(HttpServletResponse.SC_UNAUTHORIZED)

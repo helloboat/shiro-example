@@ -26,6 +26,12 @@ import javax.servlet.http.HttpServletResponse;
  * <p>User: Zhang Kaitao
  * <p>Date: 14-2-16
  * <p>Version: 1.0
+ * 资源控制器
+ * 1、首先通过如http://localhost:8080/chapter17-server/userInfo? access_token=828beda907066d058584f37bcfd597b6进行访问；
+ *
+ * 2、该控制器会验证access token的有效性；如果无效了将返回相应的错误，客户端再重新进行授权；
+ *
+ * 3、如果有效，则返回当前登录用户的用户名
  */
 @RestController
 public class UserInfoController {
@@ -36,13 +42,12 @@ public class UserInfoController {
     @RequestMapping("/userInfo")
     public HttpEntity userInfo(HttpServletRequest request) throws OAuthSystemException {
         try {
-
             //构建OAuth资源请求
             OAuthAccessResourceRequest oauthRequest = new OAuthAccessResourceRequest(request, ParameterStyle.QUERY);
             //获取Access Token
             String accessToken = oauthRequest.getAccessToken();
 
-            //验证Access Token
+            //验证Access Token是否为空
             if (!oAuthService.checkAccessToken(accessToken)) {
                 // 如果不存在/过期了，返回未验证错误，需重新验证
                 OAuthResponse oauthResponse = OAuthRSResponse

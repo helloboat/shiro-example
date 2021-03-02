@@ -37,6 +37,7 @@ import java.net.URISyntaxException;
  * <p>User: Zhang Kaitao
  * <p>Date: 14-2-16
  * <p>Version: 1.0
+ * 授权控制器
  */
 @Controller
 public class AuthorizeController {
@@ -47,16 +48,12 @@ public class AuthorizeController {
     private ClientService clientService;
 
     @RequestMapping("/authorize")
-    public Object authorize(
-            Model model,
-            HttpServletRequest request)
-            throws URISyntaxException, OAuthSystemException {
-
+    public Object authorize(Model model,HttpServletRequest request)  throws URISyntaxException, OAuthSystemException {
         try {
             //构建OAuth 授权请求
             OAuthAuthzRequest oauthRequest = new OAuthAuthzRequest(request);
 
-            //检查传入的客户端id是否正确
+            //检查传入的客户端id是否正确 是否为空
             if (!oAuthService.checkClientId(oauthRequest.getClientId())) {
                 OAuthResponse response =
                         OAuthASResponse.errorResponse(HttpServletResponse.SC_BAD_REQUEST)
@@ -67,6 +64,7 @@ public class AuthorizeController {
             }
 
 
+            //客户端id不为空时，继续
             Subject subject = SecurityUtils.getSubject();
             //如果用户没有登录，跳转到登陆页面
             if(!subject.isAuthenticated()) {
@@ -76,6 +74,7 @@ public class AuthorizeController {
                 }
             }
 
+            //用户已登录授权，继续
             String username = (String)subject.getPrincipal();
             //生成授权码
             String authorizationCode = null;

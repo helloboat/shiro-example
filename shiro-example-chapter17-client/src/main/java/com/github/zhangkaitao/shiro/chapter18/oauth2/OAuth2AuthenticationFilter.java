@@ -18,6 +18,17 @@ import java.io.IOException;
  * <p>User: Zhang Kaitao
  * <p>Date: 14-2-18
  * <p>Version: 1.0
+ * 该拦截器的作用：
+ *
+ * 1、首先判断有没有服务端返回的error参数，如果有则直接重定向到失败页面；
+ *
+ * 2、接着如果用户还没有身份验证，判断是否有auth code参数（即是不是服务端授权之后返回的），如果没有则重定向到服务端进行授权；
+ *
+ * 3、否则调用executeLogin进行登录，通过auth code创建OAuth2Token提交给Subject进行登录；
+ *
+ * 4、登录成功将回调onLoginSuccess方法重定向到成功页面；
+ *
+ * 5、登录失败则回调onLoginFailure重定向到失败页面。
  */
 public class OAuth2AuthenticationFilter extends AuthenticatingFilter {
 

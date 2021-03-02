@@ -19,6 +19,10 @@ import org.apache.shiro.subject.PrincipalCollection;
  * <p>User: Zhang Kaitao
  * <p>Date: 14-2-18
  * <p>Version: 1.0
+ * 此Realm首先只支持OAuth2Token类型的Token；
+ * 然后通过传入的auth code去换取access token；
+ * 再根据access token去获取用户信息（用户名），然后根据此信息创建AuthenticationInfo；如
+ * 果需要AuthorizationInfo信息，可以根据此处获取的用户名再根据自己的业务规则去获取。
  */
 public class OAuth2Realm extends AuthorizingRealm {
 
@@ -53,6 +57,11 @@ public class OAuth2Realm extends AuthorizingRealm {
         return token instanceof OAuth2Token;//表示此Realm只支持OAuth2Token类型
     }
 
+    /**
+     * 权限不做限制
+     * @param principals
+     * @return
+     */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
